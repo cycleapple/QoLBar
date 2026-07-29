@@ -394,7 +394,7 @@ public class ShortcutUI : IDisposable
             ImGuiEx.PopFontScale();
             ImGui.PopStyleColor();
             QoLBar.Font.Pop();
-            ImGuiEx.SetItemTooltip("Add a new shortcut.");
+            ImGuiEx.SetItemTooltip("新增捷徑。");
             QoLBar.Font.Push();
         }
 
@@ -424,7 +424,7 @@ public class ShortcutUI : IDisposable
 
         if (ImGui.BeginTabBar("Config Tabs", ImGuiTabBarFlags.NoTooltip))
         {
-            if (ImGui.BeginTabItem("Shortcut"))
+            if (ImGui.BeginTabItem("捷徑"))
             {
                 ConfigEditorUI.EditShortcutConfigBase(Config, true, hasIcon);
 
@@ -439,13 +439,13 @@ public class ShortcutUI : IDisposable
                 ImGui.EndTabItem();
             }
 
-            if (Config.Type == ShortcutType.Category && ImGui.BeginTabItem("Category"))
+            if (Config.Type == ShortcutType.Category && ImGui.BeginTabItem("分類"))
             {
                 ConfigEditorUI.EditShortcutCategoryOptions(this);
                 ImGui.EndTabItem();
             }
 
-            if (hasIcon && ImGui.BeginTabItem("Icon"))
+            if (hasIcon && ImGui.BeginTabItem("圖示"))
             {
                 ConfigEditorUI.EditShortcutIconOptions(this);
                 ImGui.EndTabItem();
@@ -481,27 +481,27 @@ public class ShortcutUI : IDisposable
                     ShiftThis(increment);
             });
         }
-        ImGuiEx.SetItemTooltip("Drag to move the shortcut.");
+        ImGuiEx.SetItemTooltip("拖曳以移動捷徑。");
 
         ImGui.SameLine();
-        if (ImGui.Button("Export"))
+        if (ImGui.Button("匯出"))
             ImGui.SetClipboardText(Importing.ExportShortcut(Config, false));
         if (ImGui.IsItemHovered())
         {
-            ImGui.SetTooltip("Export to clipboard with minimal settings (May change with updates).\n" +
-                             "Right click to export with every setting (Longer string, doesn't change).");
+            ImGui.SetTooltip("以精簡設定匯出至剪貼簿（可能隨更新變動）。\n" +
+                             "按右鍵可匯出全部設定（字串較長，格式不變）。");
 
             if (ImGui.IsMouseReleased(ImGuiMouseButton.Right))
                 ImGui.SetClipboardText(Importing.ExportShortcut(Config, true));
         }
         ImGui.SameLine();
-        if (ImGui.Button(QoLBar.Config.ExportOnDelete ? "Cut" : "Delete"))
+        if (ImGui.Button(QoLBar.Config.ExportOnDelete ? "剪下" : "刪除"))
             ConfigEditorUI.DisplayRightClickDeleteMessage();
         //if (ImGui.IsItemClicked(1)) // Jesus christ I hate ImGui who made this function activate on PRESS AND NOT RELEASE??? THIS ISN'T A CLICK
         if (ImGui.IsItemHovered())
         {
-            ImGui.SetTooltip("Right click this button to delete the shortcut!" +
-                             (QoLBar.Config.ExportOnDelete ? "\nThe shortcut will be exported to clipboard first." : ""));
+            ImGui.SetTooltip("在此按鈕按右鍵即可刪除捷徑！" +
+                             (QoLBar.Config.ExportOnDelete ? "\n刪除前會先將捷徑匯出至剪貼簿。" : ""));
 
             if (ImGui.IsMouseReleased(ImGuiMouseButton.Right))
             {
@@ -647,10 +647,10 @@ public class ShortcutUI : IDisposable
         ImGui.SameLine(ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X + Style.WindowPadding.X - iconSize);
         if (DrawIcon(46, new ImGuiEx.IconSettings { size = new Vector2(iconSize) }, "nl"))
             QoLBar.Plugin.ToggleIconBrowser();
-        ImGuiEx.SetItemTooltip("Opens up a list of all icons you can use instead of text.\n" +
-                               "Warning: The last 3 tabs contain very large images and will use several GB of memory.\n" +
-                               "Clicking on one will copy text to be pasted into the \"Name\" field of a shortcut.\n" +
-                               "Additionally, while the browser is open it will autofill the \"Name\" of shortcuts.");
+        ImGuiEx.SetItemTooltip("開啟可取代文字使用的圖示清單。\n" +
+                               "警告：最後 3 個分頁包含大型圖片，可能使用數 GB 記憶體。\n" +
+                               "點擊圖示會複製可貼入捷徑「名稱」欄位的文字。\n" +
+                               "此外，圖示瀏覽器開啟時也會自動填入捷徑的「名稱」。");
     }
 
     public static void DrawAddShortcut(BarUI barUI, ShortcutUI shUI)
@@ -668,7 +668,7 @@ public class ShortcutUI : IDisposable
 
         ConfigEditorUI.EditShortcutConfigBase(newSh, false, false);
 
-        if (ImGui.Button("Create"))
+        if (ImGui.Button("建立"))
         {
             barUI?.AddShortcut(newSh);
             shUI?.AddShortcut(newSh);
@@ -676,7 +676,7 @@ public class ShortcutUI : IDisposable
             ImGui.CloseCurrentPopup();
         }
         ImGui.SameLine();
-        if (ImGui.Button("Import"))
+        if (ImGui.Button("匯入"))
         {
             var imports = Importing.TryImport(ImGuiEx.TryGetClipboardText(), true);
             if (imports.shortcut != null)
@@ -695,8 +695,8 @@ public class ShortcutUI : IDisposable
             QoLBar.Config.Save();
             ImGui.CloseCurrentPopup();
         }
-        ImGuiEx.SetItemTooltip("Import a shortcut from the clipboard,\n" +
-                               "or import all of another bar's shortcuts.");
+        ImGuiEx.SetItemTooltip("從剪貼簿匯入捷徑，\n" +
+                               "或匯入另一個快捷列的全部捷徑。");
 
         DrawIconBrowserButton();
 

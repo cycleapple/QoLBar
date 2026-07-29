@@ -229,7 +229,7 @@ public class Configuration : IPluginConfiguration
             else
             {
                 DalamudApi.LogError("Failed to save again :(");
-                QoLBar.PrintError("Error saving config, is something else writing to it?");
+                QoLBar.PrintError("儲存設定時發生錯誤，是否有其他程式正在寫入設定檔？");
             }
         }
     }
@@ -350,25 +350,21 @@ public class Configuration : IPluginConfiguration
         var window = ImGuiHelpers.MainViewport.Size;
         ImGui.SetNextWindowPos(new System.Numerics.Vector2(window.X / 2, window.Y / 2), ImGuiCond.Appearing, new System.Numerics.Vector2(0.5f));
         ImGui.SetNextWindowSize(new System.Numerics.Vector2(550, 280) * ImGuiHelpers.GlobalScale);
-        ImGui.Begin("QoL Bar Updated!", ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoSavedSettings);
-        ImGui.TextWrapped("QoL Bar has a new feature where categories may now run commands like a normal shortcut, " +
-                          "this may cause problems for people who were using the plugin BEFORE JANUARY 4TH, due to " +
-                          "the command setting being used for tooltips. Please verify that you understand the risks " +
-                          "and that YOU MAY ACCIDENTALLY SEND CHAT MESSAGES WHEN CLICKING CATEGORIES. Additionally, " +
-                          "YOU MAY DELETE ALL COMMANDS FROM ALL CATEGORIES AFTERWARDS if you are worried. Selecting " +
-                          "YES will remove EVERY command from EVERY category in your config, note that this has no " +
-                          "real downside if you have not started to utilize this feature. Selecting NO will close this " +
-                          "popup permanently, you may also change your mind after selecting YES if you restore the " +
-                          "version backup from the config, please be aware that old configs will possibly contain " +
-                          "commands again if you do reload one of them.");
+        ImGui.Begin("QoL Bar 已更新！", ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoSavedSettings);
+        ImGui.TextWrapped("QoL Bar 現在可讓分類像一般捷徑一樣執行指令。對 1 月 4 日前就使用本插件的使用者而言，" +
+                          "由於過去曾將指令欄位用於工具提示，這項功能可能造成問題。請確認你已了解：點擊分類時，" +
+                          "可能會意外傳送聊天訊息。若有所疑慮，可選擇刪除所有分類中的全部指令。" +
+                          "選擇「是」會移除設定內每個分類的所有指令；若尚未使用此新功能，通常不會造成影響。" +
+                          "選擇「否」會永久關閉此提示。選擇「是」後仍可透過還原設定版本備份改變決定；" +
+                          "請注意，重新載入舊設定時可能會再次帶入這些指令。");
         ImGui.Spacing();
         ImGui.Spacing();
-        ImGui.Checkbox("I UNDERSTAND", ref updateWindowAgree);
+        ImGui.Checkbox("我已了解", ref updateWindowAgree);
         if (updateWindowAgree)
         {
             ImGui.Spacing();
             ImGui.Spacing();
-            if (ImGui.Button("YES, DELETE THEM"))
+            if (ImGui.Button("是，全部刪除"))
             {
                 static void DeleteRecursive(ShCfg sh)
                 {
@@ -391,7 +387,7 @@ public class Configuration : IPluginConfiguration
                 displayUpdateWindow = false;
             }
             ImGui.SameLine();
-            if (ImGui.Button("NO, I AM FINE"))
+            if (ImGui.Button("否，保留現狀"))
                 displayUpdateWindow = false;
         }
         ImGui.End();

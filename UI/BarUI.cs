@@ -461,7 +461,7 @@ public class BarUI : IDisposable
                 ImGui.OpenPopup("addShortcut");
             ImGuiEx.PopFontScale();
             QoLBar.Font.Pop();
-            ImGuiEx.SetItemTooltip("Add a new shortcut.\nRight click this (or the bar background) for options.\nRight click other shortcuts to edit them.", ImGuiHoveredFlags.AllowWhenBlockedByPopup);
+            ImGuiEx.SetItemTooltip("新增捷徑。\n在此處（或快捷列背景）按右鍵可開啟選項。\n在其他捷徑上按右鍵可進行編輯。", ImGuiHoveredFlags.AllowWhenBlockedByPopup);
             QoLBar.Font.Push();
 
             var size = ImGui.GetItemRectMax() - ImGui.GetWindowPos();
@@ -536,13 +536,13 @@ public class BarUI : IDisposable
 
             if (ImGui.BeginTabBar("Config Tabs", ImGuiTabBarFlags.NoTooltip))
             {
-                if (ImGui.BeginTabItem("General"))
+                if (ImGui.BeginTabItem("一般"))
                 {
                     ConfigEditorUI.EditBarGeneralOptions(this);
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem("Style"))
+                if (ImGui.BeginTabItem("外觀"))
                 {
                     ConfigEditorUI.EditBarStyleOptions(this);
                     ImGui.EndTabItem();
@@ -553,18 +553,18 @@ public class BarUI : IDisposable
 
             ImGui.Spacing();
             ImGui.Spacing();
-            if (ImGui.Button("Export"))
+            if (ImGui.Button("匯出"))
                 ImGui.SetClipboardText(Importing.ExportBar(Config, false));
             if (ImGui.IsItemHovered())
             {
-                ImGui.SetTooltip("Export to clipboard with minimal settings (May change with updates).\n" +
-                                 "Right click to export with every setting (Longer string, doesn't change).");
+                ImGui.SetTooltip("以精簡設定匯出至剪貼簿（可能隨更新變動）。\n" +
+                                 "按右鍵可匯出全部設定（字串較長，格式不變）。");
 
                 if (ImGui.IsMouseReleased(ImGuiMouseButton.Right))
                     ImGui.SetClipboardText(Importing.ExportBar(Config, true));
             }
             ImGui.SameLine();
-            if (ImGui.Button("QoL Bar Config"))
+            if (ImGui.Button("QoL Bar 設定"))
                 QoLBar.Plugin.ToggleConfig();
 
             ImGuiEx.ClampWindowPosToViewport();

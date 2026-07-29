@@ -91,15 +91,15 @@ public class QoLBar : IDalamudPlugin
     public void ToggleConfig() => ui.ToggleConfig();
 
     [Command("/qolbar")]
-    [HelpMessage("Open the configuration menu.")]
+    [HelpMessage("開啟設定選單。")]
     public void ToggleConfig(string command, string argument) => ToggleConfig();
 
     [Command("/qolicons")]
-    [HelpMessage("Open the icon browser.")]
+    [HelpMessage("開啟圖示瀏覽器。")]
     public void ToggleIconBrowser(string command = null, string argument = null) => IconBrowserUI.ToggleIconBrowser();
 
     [Command("/qolvisible")]
-    [HelpMessage("Hide or reveal a bar using its name or index. Usage: /qolvisible [on|off|toggle] <bar>")]
+    [HelpMessage("使用名稱或編號隱藏或顯示快捷列。用法：/qolvisible [on|off|toggle] <快捷列>")]
     private void OnQoLVisible(string command, string argument)
     {
         var reg = Regex.Match(argument, @"^(\w+) (.+)");
@@ -134,16 +134,16 @@ public class QoLBar : IDalamudPlugin
                         ui.SetBarHidden(bar, true);
                     break;
                 default:
-                    PrintError("Invalid subcommand.");
+                    PrintError("無效的子指令。");
                     break;
             }
         }
         else
-            PrintError("Usage: /qolvisible [on|off|toggle] <bar>");
+            PrintError("用法：/qolvisible [on|off|toggle] <快捷列>");
     }
 
     [Command("/performance")]
-    [HelpMessage("Starts playing an instrument.")]
+    [HelpMessage("開始演奏樂器。")]
     public void OnPerformance(string command, string argument)
     {
         if (!byte.TryParse(argument, out var b)
@@ -152,7 +152,7 @@ public class QoLBar : IDalamudPlugin
             b = (byte)r.RowId;
 
         if (b == 0)
-            PrintError("Invalid instrument.");
+            PrintError("無效的樂器。");
         else
             Game.StartPerformance(b);
     }

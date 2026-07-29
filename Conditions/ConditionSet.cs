@@ -7,8 +7,8 @@ public class ConditionSetCondition : ICondition, IDrawableCondition, IConditionC
     public const string constID = "cs";
 
     public string ID => constID;
-    public string ConditionName => "Condition Set";
-    public string CategoryName => "Condition Set";
+    public string ConditionName => "條件組";
+    public string CategoryName => "條件組";
     public int DisplayPriority => 0;
     public bool Check(dynamic arg) => ConditionManager.CheckConditionSet((int)arg);
     public string GetTooltip(CndCfg cndCfg) => null;

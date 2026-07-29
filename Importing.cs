@@ -314,13 +314,13 @@ public static class Importing
                 switch (e)
                 {
                     case FormatException:
-                        QoLBar.PrintError("Failed to import from clipboard! Import string is invalid or incomplete.");
+                        QoLBar.PrintError("無法從剪貼簿匯入！匯入字串無效或不完整。");
                         break;
                     case JsonSerializationException:
-                        QoLBar.PrintError("Failed to import from clipboard! Import string does not contain an importable object.");
+                        QoLBar.PrintError("無法從剪貼簿匯入！匯入字串不含可匯入的物件。");
                         break;
                     default:
-                        QoLBar.PrintError($"Failed to import from clipboard!\n{e}");
+                        QoLBar.PrintError($"無法從剪貼簿匯入！\n{e}");
                         break;
                 }
             }

@@ -422,37 +422,37 @@ public static class Keybind
     public static bool KeybindInput(ShCfg sh)
     {
         var ret = false;
-        if (InputHotkey("Hotkey", ref sh.Hotkey))
+        if (InputHotkey("快捷鍵", ref sh.Hotkey))
         {
             QoLBar.Config.Save();
             ret = true;
         }
-        ImGuiEx.SetItemTooltip("Press escape to clear the hotkey.");
+        ImGuiEx.SetItemTooltip("按 Esc 可清除快捷鍵。");
 
         if (sh.Hotkey <= 0) return ret;
 
-        if (ImGui.Checkbox("Pass Input to Game", ref sh.KeyPassthrough))
+        if (ImGui.Checkbox("將輸入傳遞給遊戲", ref sh.KeyPassthrough))
             QoLBar.Config.Save();
-        ImGuiEx.SetItemTooltip("Disables the hotkey from blocking the game input.");
+        ImGuiEx.SetItemTooltip("讓此快捷鍵不會阻擋遊戲輸入。");
         return ret;
     }
 
     public static bool KeybindInput(BarCfg bar)
     {
         var ret = false;
-        if (InputHotkey("Pie Hotkey", ref bar.Hotkey))
+        if (InputHotkey("圓盤選單快捷鍵", ref bar.Hotkey))
         {
             QoLBar.Config.Save();
             ret = true;
         }
-        ImGuiEx.SetItemTooltip("Use this to specify a held hotkey to bring the bar up as a pie menu.\n" +
-                               "Press escape to clear the hotkey.");
+        ImGuiEx.SetItemTooltip("指定按住哪組快捷鍵時，將快捷列顯示為圓盤選單。\n" +
+                               "按 Esc 可清除快捷鍵。");
         return ret;
     }
 
     public static void DrawDebug()
     {
-        ImGui.TextUnformatted($"Active Hotkeys - {hotkeys.Count}");
+        ImGui.TextUnformatted($"生效中的快捷鍵：{hotkeys.Count}");
         ImGui.Spacing();
         if (hotkeys.Count < 1)
             ImGui.Separator();
@@ -466,7 +466,7 @@ public static class Keybind
 
                 var (_, ui) = hotkeys[i];
                 var sh = ui.Config;
-                if (ImGui.SmallButton("Delete"))
+                if (ImGui.SmallButton("刪除"))
                 {
                     sh.Hotkey = 0;
                     sh.KeyPassthrough = false;
@@ -478,7 +478,7 @@ public static class Keybind
                 ImGui.PopFont();
                 if (ImGui.IsItemHovered())
                 {
-                    ImGui.SetTooltip($"Hotkey {(sh.KeyPassthrough ? "doesn't block" : "blocks")} game input.");
+                    ImGui.SetTooltip($"此快捷鍵{(sh.KeyPassthrough ? "不會阻擋" : "會阻擋")}遊戲輸入。");
 
                     if (ImGui.IsMouseReleased(ImGuiMouseButton.Left))
                     {
@@ -490,7 +490,7 @@ public static class Keybind
                 ImGui.TextUnformatted(GetKeyName(sh.Hotkey));
                 ImGui.NextColumn();
                 if (sh.Type == ShCfg.ShortcutType.Category)
-                    ImGui.TextUnformatted($"{sh.Mode} {(ui.parent == null ? "Category" : "Subcategory")} \"{sh.Name}\" {(string.IsNullOrEmpty(sh.Command) ? "" : "\n" + sh.Command)}");
+                    ImGui.TextUnformatted($"{sh.Mode} {(ui.parent == null ? "分類" : "子分類")}「{sh.Name}」{(string.IsNullOrEmpty(sh.Command) ? "" : "\n" + sh.Command)}");
                 else
                     ImGui.TextUnformatted(sh.Command);
                 ImGui.NextColumn();

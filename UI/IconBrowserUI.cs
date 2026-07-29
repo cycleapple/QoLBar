@@ -46,25 +46,25 @@ public static class IconBrowserUI
         if (ImGui.BeginTabBar("Icon Tabs", ImGuiTabBarFlags.NoTooltip))
         {
             BeginIconList(" ★ ", iconSize);
-            AddIcons(0, 100, "System");
-            AddIcons(62_000, 62_600, "Class/Job");
-            AddIcons(62_800, 62_900, "Gearsets");
-            AddIcons(66_000, 66_400, "Macros");
-            AddIcons(90_000, 100_000, "FC Crests/Symbols");
+            AddIcons(0, 100, "系統");
+            AddIcons(62_000, 62_600, "職業");
+            AddIcons(62_800, 62_900, "套裝列表");
+            AddIcons(66_000, 66_400, "巨集");
+            AddIcons(90_000, 100_000, "公會徽章／符號");
             AddIcons(114_000, 114_100, "New Game+");
-            AddIcons(TextureDictionary.FrameIconID, TextureDictionary.FrameIconID + 3000, "Extra");
+            AddIcons(TextureDictionary.FrameIconID, TextureDictionary.FrameIconID + 3000, "其他");
             EndIconList();
 
-            BeginIconList("Custom", iconSize);
-            ImGuiEx.SetItemTooltip("Place images inside \"%%AppData%%\\XIVLauncher\\pluginConfigs\\QoLBar\\icons\"\n" +
-                                   "to load them as usable icons, the file names must be in the format \"#.img\" (# > 0).\n" +
-                                   "I.e. \"1.jpg\" \"2.png\" \"3.png\" \"732487.jpg\" and so on.");
+            BeginIconList("自訂", iconSize);
+            ImGuiEx.SetItemTooltip("將圖片放入「%%AppData%%\\XIVLauncher\\pluginConfigs\\QoLBar\\icons」\n" +
+                                   "即可載入為可用圖示；檔名格式必須為「#.副檔名」（# > 0）。\n" +
+                                   "例如「1.jpg」「2.png」「3.png」「732487.jpg」等。");
             if (_tabExists)
             {
-                if (ImGui.Button("Refresh Custom Icons"))
+                if (ImGui.Button("重新整理自訂圖示"))
                     QoLBar.Plugin.AddUserIcons();
                 ImGui.SameLine();
-                if (ImGui.Button("Open Icon Folder"))
+                if (ImGui.Button("開啟圖示資料夾"))
                     Process.Start(new ProcessStartInfo
                     {
                         FileName = QoLBar.Config.GetPluginIconPath(),
@@ -78,64 +78,64 @@ public static class IconBrowserUI
 
             BeginIconList("Misc", iconSize);
             AddIcons(60_000, 61_000, "UI");
-            AddIcons(61_200, 61_250, "Markers");
-            AddIcons(61_290, 61_390, "Markers 2");
+            AddIcons(61_200, 61_250, "標記");
+            AddIcons(61_290, 61_390, "標記 2");
             AddIcons(61_390, 62_000, "UI 2");
-            AddIcons(62_600, 62_620, "HQ FC Banners");
-            AddIcons(63_900, 64_000, "Map Markers");
-            AddIcons(64_500, 64_600, "Stamps");
-            AddIcons(65_000, 65_900, "Currencies");
-            AddIcons(76_300, 78_000, "Group Pose");
-            AddIcons(180_000, 180_060, "Stamps/Chocobo Racing");
+            AddIcons(62_600, 62_620, "高解析度公會旗幟");
+            AddIcons(63_900, 64_000, "地圖標記");
+            AddIcons(64_500, 64_600, "貼圖");
+            AddIcons(65_000, 65_900, "貨幣");
+            AddIcons(76_300, 78_000, "集體動作");
+            AddIcons(180_000, 180_060, "貼圖／陸行鳥競賽");
             EndIconList();
 
             BeginIconList("Misc 2", iconSize);
-            AddIcons(62_900, 63_200, "Achievements/Hunting Log");
-            AddIcons(65_900, 66_000, "Fishing");
-            AddIcons(66_400, 66_500, "Tags");
-            AddIcons(67_000, 68_000, "Fashion Log");
-            AddIcons(71_000, 71_500, "Quests");
+            AddIcons(62_900, 63_200, "成就／討伐筆記");
+            AddIcons(65_900, 66_000, "釣魚");
+            AddIcons(66_400, 66_500, "標籤");
+            AddIcons(67_000, 68_000, "時尚品鑑");
+            AddIcons(71_000, 71_500, "任務");
             AddIcons(72_000, 72_500, "BLU UI");
             AddIcons(72_500, 76_000, "Bozja UI");
-            AddIcons(76_000, 76_200, "Mahjong");
-            AddIcons(80_000, 80_200, "Quest Log");
-            AddIcons(80_730, 81_000, "Relic Log");
-            AddIcons(83_000, 84_000, "FC Ranks");
+            AddIcons(76_000, 76_200, "麻將");
+            AddIcons(80_000, 80_200, "任務日誌");
+            AddIcons(80_730, 81_000, "古武日誌");
+            AddIcons(83_000, 84_000, "公會階級");
             EndIconList();
 
             BeginIconList("Actions", iconSize);
-            AddIcons(100, 4_000, "Classes/Jobs");
-            AddIcons(5_100, 8_000, "Traits");
-            AddIcons(8_000, 9_000, "Fashion");
+            AddIcons(100, 4_000, "職業");
+            AddIcons(5_100, 8_000, "特性");
+            AddIcons(8_000, 9_000, "時尚");
             AddIcons(9_000, 10_000, "PvP");
-            AddIcons(61_100, 61_200, "Event");
-            AddIcons(61_250, 61_290, "Duties/Trials");
-            AddIcons(64_000, 64_200, "Emotes");
+            AddIcons(61_100, 61_200, "活動");
+            AddIcons(61_250, 61_290, "副本／討伐殲滅戰");
+            AddIcons(64_000, 64_200, "情感動作");
             AddIcons(64_200, 64_325, "FC");
-            AddIcons(64_325, 64_500, "Emotes 2");
+            AddIcons(64_325, 64_500, "情感動作 2");
             AddIcons(64_600, 64_800, "Eureka");
             AddIcons(64_800, 65_000, "NPC");
-            AddIcons(70_000, 70_200, "Chocobo Racing");
+            AddIcons(70_000, 70_200, "陸行鳥競賽");
             EndIconList();
 
             BeginIconList("Mounts & Minions", iconSize);
-            AddIcons(4_000, 4_400, "Mounts");
-            AddIcons(4_400, 5_100, "Minions");
-            AddIcons(59_000, 59_400, "Mounts... again?");
-            AddIcons(59_400, 60_000, "Minion Items");
-            AddIcons(68_000, 68_400, "Mounts Log");
-            AddIcons(68_400, 69_000, "Minions Log");
+            AddIcons(4_000, 4_400, "坐騎");
+            AddIcons(4_400, 5_100, "寵物");
+            AddIcons(59_000, 59_400, "更多坐騎");
+            AddIcons(59_400, 60_000, "寵物道具");
+            AddIcons(68_000, 68_400, "坐騎一覽");
+            AddIcons(68_400, 69_000, "寵物一覽");
             EndIconList();
 
             BeginIconList("Items", iconSize);
-            AddIcons(20_000, 30_000, "General");
-            AddIcons(50_000, 54_400, "Housing");
-            AddIcons(58_000, 59_000, "Fashion");
+            AddIcons(20_000, 30_000, "一般");
+            AddIcons(50_000, 54_400, "房屋");
+            AddIcons(58_000, 59_000, "時尚");
             EndIconList();
 
             BeginIconList("Equipment", iconSize);
-            AddIcons(30_000, 50_000, "Equipment");
-            AddIcons(54_400, 58_000, "Special Equipment");
+            AddIcons(30_000, 50_000, "裝備");
+            AddIcons(54_400, 58_000, "特殊裝備");
             EndIconList();
 
             BeginIconList("Aesthetics", iconSize);
@@ -147,35 +147,35 @@ public static class IconBrowserUI
             EndIconList();
 
             BeginIconList("Garbage", iconSize, true);
-            AddIcons(61_000, 61_100, "Splash Logos");
-            AddIcons(62_620, 62_800, "World Map");
-            AddIcons(63_200, 63_900, "Zone Maps");
-            AddIcons(66_500, 67_000, "Gardening Log");
-            AddIcons(69_000, 70_000, "Mount/Minion Footprints");
-            AddIcons(70_200, 71_000, "DoH/DoL Logs");
-            AddIcons(76_200, 76_300, "Fan Festival");
-            AddIcons(78_000, 80_000, "Fishing Log");
-            AddIcons(80_200, 80_730, "Notebooks");
-            AddIcons(81_000, 82_060, "Notebooks 2");
-            AddIcons(84_000, 85_000, "Hunts");
+            AddIcons(61_000, 61_100, "標誌");
+            AddIcons(62_620, 62_800, "世界地圖");
+            AddIcons(63_200, 63_900, "區域地圖");
+            AddIcons(66_500, 67_000, "栽培筆記");
+            AddIcons(69_000, 70_000, "坐騎／寵物足跡");
+            AddIcons(70_200, 71_000, "生產／採集筆記");
+            AddIcons(76_200, 76_300, "粉絲節");
+            AddIcons(78_000, 80_000, "釣魚筆記");
+            AddIcons(80_200, 80_730, "筆記");
+            AddIcons(81_000, 82_060, "筆記 2");
+            AddIcons(84_000, 85_000, "怪物狩獵");
             AddIcons(85_000, 90_000, "UI 3");
-            AddIcons(150_000, 170_000, "Tutorials");
+            AddIcons(150_000, 170_000, "教學");
             //AddIcons(170_000, 180_000, "Placeholder"); // TODO: 170k - 180k are blank placeholder files, check if they get used in EW
             EndIconList();
 
             BeginIconList("Spoilers", iconSize, true);
-            AddIcons(82_100, 83_000, "Triple Triad"); // Out of order because people might want to use these
-            AddIcons(82_060, 82_100, "Trusts");
-            AddIcons(120_000, 130_000, "Popup Texts");
-            AddIcons(142_000, 150_000, "Japanese Popup Texts");
-            AddIcons(180_060, 180_100, "Trusts Names");
-            AddIcons(181_000, 181_500, "Boss Titles");
-            AddIcons(181_500, iconMax, "Placeholder");
+            AddIcons(82_100, 83_000, "九宮幻卡"); // Out of order because people might want to use these
+            AddIcons(82_060, 82_100, "親信戰友");
+            AddIcons(120_000, 130_000, "彈出文字");
+            AddIcons(142_000, 150_000, "日文彈出文字");
+            AddIcons(180_060, 180_100, "親信戰友名稱");
+            AddIcons(181_000, 181_500, "首領名稱");
+            AddIcons(181_500, iconMax, "預留位置");
             EndIconList();
 
             BeginIconList("Spoilers 2", iconSize, true);
-            AddIcons(71_500, 72_000, "Credits");
-            AddIcons(100_000, 114_000, "Quest Images");
+            AddIcons(71_500, 72_000, "製作人員名單");
+            AddIcons(100_000, 114_000, "任務圖片");
             AddIcons(114_100, 120_000, "New Game+");
             EndIconList();
 

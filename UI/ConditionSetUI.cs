@@ -36,7 +36,7 @@ public static class ConditionSetUI
 
         if (ImGui.Button(FontAwesomeIcon.Plus.ToIconString(), buttonSize))
         {
-            QoLBar.Config.CndSetCfgs.Add(new() { Name = "New Set" });
+            QoLBar.Config.CndSetCfgs.Add(new() { Name = "新條件組" });
             QoLBar.Config.Save();
         }
 
@@ -60,7 +60,7 @@ public static class ConditionSetUI
             ImGui.PopStyleColor(4);
 
         ImGui.PopFont();
-        ImGuiEx.SetItemTooltip(!containsSensitiveInfo ? "Export condition set to clipboard." : "Please enable the \"Allow exporting sensitive condition sets\" setting to export this set.");
+        ImGuiEx.SetItemTooltip(!containsSensitiveInfo ? "將條件組匯出至剪貼簿。" : "請先啟用「允許匯出敏感條件組」才能匯出此條件組。");
         ImGui.PushFont(UiBuilder.IconFont);
 
         ImGui.SameLine();
@@ -84,11 +84,11 @@ public static class ConditionSetUI
             }
             catch (Exception e)
             {
-                QoLBar.PrintError($"Failed to import condition set from clipboard!\n{e.Message}");
+                QoLBar.PrintError($"無法從剪貼簿匯入條件組！\n{e.Message}");
             }
         }
         ImGui.PopFont();
-        ImGuiEx.SetItemTooltip("Import condition set from clipboard.");
+        ImGuiEx.SetItemTooltip("從剪貼簿匯入條件組。");
         ImGui.PushFont(UiBuilder.IconFont);
 
         ImGui.SameLine();
@@ -136,7 +136,7 @@ public static class ConditionSetUI
 
         ImGui.PopFont();
 
-        ImGuiEx.SetItemTooltip("Double click on a set to edit its name.\n\nAdditionally, you can click this to open Dalamud's debug menu\nto see current Condition Flags.");
+        ImGuiEx.SetItemTooltip("在條件組上按兩下即可編輯名稱。\n\n也可點擊此處開啟 Dalamud 偵錯選單，\n查看目前的遊戲狀態。");
 
         if (ImGui.IsItemHovered() && ImGui.IsMouseReleased(ImGuiMouseButton.Left))
             Game.ExecuteCommand("/xldata condition");
@@ -145,7 +145,7 @@ public static class ConditionSetUI
         var listWidth = (ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X - ImGui.GetStyle().ItemSpacing.X) / 2;
 
         ImGui.SameLine(listWidth);
-        ImGui.TextUnformatted("\t\tDynamic Presets");
+        ImGui.TextUnformatted("\t\t動態預設");
 
         ImGui.BeginChild("QoLBarConditionSetList", new Vector2(listWidth, listHeight), true);
         DrawConditionSetList();
@@ -285,7 +285,7 @@ public static class ConditionSetUI
 
             if (ImGui.IsItemHovered())
             {
-                ImGui.SetTooltip("Right click this button to delete this condition!");
+                ImGui.SetTooltip("在此按鈕按右鍵即可刪除此條件！");
 
                 if (ImGui.IsMouseReleased(ImGuiMouseButton.Right))
                 {
@@ -316,7 +316,7 @@ public static class ConditionSetUI
                 if (debugSteps != null && i < debugSteps.Count)
                 {
                     var setSuccess = debugSteps[i];
-                    operatorTooltip += $"\nSet (Up to this condition): {(setSuccess ? "True" : "False")}";
+                    operatorTooltip += $"\n條件組（截至此條件）：{(setSuccess ? "成立" : "不成立")}";
 
                     var setStatusCol = setSuccess ? 0x2000FF00u : 0x200000FFu;
                     ImGui.GetWindowDrawList().AddRectFilled(ImGui.GetItemRectMin(), ImGui.GetItemRectMax(), setStatusCol, ImGui.GetStyle().FrameRounding);
@@ -349,9 +349,9 @@ public static class ConditionSetUI
             }
             ImGui.PopStyleColor();
 
-            var notTooltip = "NOT";
+            var notTooltip = "反向";
             var success = ConditionManager.CheckCondition(cndCfg.ID, cndCfg.Arg, cndCfg.Negate);
-            notTooltip += $"\nCondition: {(success ? "True" : "False")}";
+            notTooltip += $"\n條件：{(success ? "成立" : "不成立")}";
 
             var statusCol = success ? 0x2000FF00u : 0x200000FFu;
             ImGui.GetWindowDrawList().AddRectFilled(ImGui.GetItemRectMin(), ImGui.GetItemRectMax(), statusCol, ImGui.GetStyle().FrameRounding);
