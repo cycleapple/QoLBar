@@ -1,13 +1,13 @@
 {
   "Author": "UnknownX",
   "Name": "QoL Bar",
-  "Punchline": "Customizable ImGui hotbars",
-  "Description": "A plugin designed to provide a simple, customizable and always available interface for chat commands\nor other plugins to alleviate the need for using macros and hotbar space to achieve similar results.\n\nThe plugin should initially appear as a small box on the bottom center of the game window.",
+  "Punchline": "可自訂的 ImGui 快捷列。",
+  "Description": "提供簡潔、可自訂且隨時可用的聊天指令與插件快捷介面，減少巨集及快捷列欄位的占用。\n\n首次啟用後，插件會在遊戲視窗底部中央顯示一個小型快捷列。",
   "IconUrl": "https://raw.githubusercontent.com/goatcorp/PluginDistD17/main/stable/QoLBar/images/icon.png",
   "ImageUrls": [
     ""
   ],
-  "RepoUrl": "https://github.com/UnknownX7/QoLBar",
+  "RepoUrl": "https://github.com/cycleapple/QoLBar/tree/api13-tw",
   "CategoryTags": [
     "UI",
     "utility"
