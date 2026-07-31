@@ -193,7 +193,10 @@ public class QoLBar : IDalamudPlugin
             buildToolkit.OnPreBuild(tk =>
             {
                 var config = new SafeFontConfig { SizePx = Math.Min(Math.Max(Config.FontSize, 1), MaxFontSize) };
-                var font = tk.AddDalamudAssetFont(DalamudAsset.NotoSansJpMedium, config);
+                // TC Dalamud API13 exposes the newer asset enum value but does
+                // not classify that bundled asset as a font. Let the runtime
+                // choose its actual default font instead.
+                var font = tk.AddDalamudDefaultFont(config.SizePx);
                 config.MergeFont = font;
                 tk.AddGameSymbol(config);
                 tk.SetFontScaleMode(font, FontScaleMode.UndoGlobalScale);
